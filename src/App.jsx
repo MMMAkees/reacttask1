@@ -23,22 +23,30 @@ function App() {
   {
     /*Task 2 Question 2*/
   }
-  const [stock, setStock] = useState(0);
+  // const [stock, setStock] = useState(0);
 
-  const addStock = () => {
-    setStock(stock + 10);
-  };
+  // const addStock = () => {
+  //   setStock(stock + 10);
+  // };
 
-  const removeStock = () => {
-    if (stock > 0) {
-      setStock(stock - 1);
-    }
-  };
+  // const removeStock = () => {
+  //   if (stock > 0) {
+  //     setStock(stock - 1);
+  //   }
+  // };
 
-  const stockStatus = () => {
-    if(stock == 0){
-      return "Out of Stock";
-    } return stock;
+  // const stockStatus = () => {
+  //   if(stock == 0){
+  //     return "Out of Stock";
+  //   } return stock;
+  // };
+  {
+    /*Task 3 */
+  }
+  const [showProfile, setShowProfile] = useState(false);
+
+  const toggleProfile = () => {
+    setShowProfile(!showProfile);
   };
 
   return (
@@ -56,14 +64,28 @@ function App() {
       <button onClick={resetAttendance}>Reset</button> */}
 
       {/*Task 2*/}
-      <h1>Product Stock Management</h1>
+      {/* <h1>Product Stock Management</h1>
 
       <h2>Current Stock: {stockStatus()}</h2>
 
       <button onClick={addStock}>Add Stock</button>
-      <button onClick={removeStock}>Remove Stock</button>
+      <button onClick={removeStock}>Remove Stock</button> */}
 
+      {/*Task 3 */}
 
+      <h2>User Profile Toggle</h2>
+
+      <button onClick={toggleProfile}>
+        {showProfile ? "Hide Profile" : "Show Profile"}
+      </button>
+
+      {showProfile && (
+        <div>
+          <h2>Mohamed Akees</h2>
+          <p>Frontend Developer</p>
+          <p>Kalmunai</p>
+        </div>
+      )}
     </>
   );
 }
