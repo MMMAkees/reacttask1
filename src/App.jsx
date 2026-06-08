@@ -80,20 +80,27 @@ function App() {
   {
     /*Task 5 */
   }
-  const [loading, setLoading] = useState(true);
-  const [employees, setEmployees] = useState([]);
+  // const [loading, setLoading] = useState(true);
+  // const [employees, setEmployees] = useState([]);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setEmployees(["Akees", "Ali", "Niyas", "Fazil"]);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setEmployees(["Akees", "Ali", "Niyas", "Fazil"]);
 
-      setLoading(false);
-    }, 2000);
-  }, []);
+  //     setLoading(false);
+  //   }, 2000);
+  // }, []);
 
-  if (loading) {
-    return <h2>Loading...</h2>;
+  // if (loading) {
+  //   return <h2>Loading...</h2>;
+  // }
+
+  {
+    /*Task 6 */
   }
+  const students = ["Akees", "Ali", "Samthi", "Haseem", "Zain"];
+
+  const [search, setSearch] = useState("");
 
   return (
     <>
@@ -165,13 +172,31 @@ function App() {
       <h2>Total Expense: Rs.{totalExpense}</h2> */}
 
       {/*Task 5 */}
-      <h1>Employee List</h1>
+      {/* <h1>Employee List</h1>
 
       <ul>
         {employees.map((employee, index) => (
           <li key={index}>{employee}</li>
         ))}
-      </ul>
+      </ul> */}
+
+      {/*Task 6 */}
+      <h1>Student Search</h1>
+
+      <input
+        type="text"
+        placeholder="Search Student"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+
+      {students
+        .filter((student) =>
+          student.toLowerCase().includes(search.toLowerCase()),
+        )
+        .map((student, index) => (
+          <p key={index}>{student}</p>
+        ))}
     </>
   );
 }
