@@ -135,26 +135,50 @@ function App() {
   {
     /*Task 9*/
   }
+  // const [name, setName] = useState("");
+  // const [email, setEmail] = useState("");
+
+  // useEffect(() => {
+  //   localStorage.setItem("name", name);
+  //   localStorage.setItem("email", email);
+  // }, [name, email]);
+
+  // useEffect(() => {
+  //   const savedName = localStorage.getItem("name");
+  //   const savedEmail = localStorage.getItem("email");
+
+  //   if (savedName) {
+  //     setName(savedName);
+  //   }
+
+  //   if (savedEmail) {
+  //     setEmail(savedEmail);
+  //   }
+  // }, []);`
+
+  {
+    /*Task 10*/
+  }
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [days, setDays] = useState("");
+  const [status, setStatus] = useState("");
 
   useEffect(() => {
-    localStorage.setItem("name", name);
-    localStorage.setItem("email", email);
-  }, [name, email]);
-
-  useEffect(() => {
-    const savedName = localStorage.getItem("name");
-    const savedEmail = localStorage.getItem("email");
-
-    if (savedName) {
-      setName(savedName);
+    if (days === "" || days === null) {
+      setStatus("");
+      return;
     }
 
-    if (savedEmail) {
-      setEmail(savedEmail);
+    if (Number(days) > 10) {
+      setStatus("Manager Approval Required");
+    } else {
+      setStatus("Approved");
     }
-  }, []);
+  }, [days]);
+
+  const handleSubmit = () => {
+    alert(`${name} applied for ${days} days - ${status}`);
+  };
 
   return (
     <>
@@ -280,7 +304,7 @@ function App() {
       <h2>Total: RS.{total}</h2> */}
 
       {/*Task 9*/}
-      <h1>Auto Save Form</h1>
+      {/* <h1>Auto Save Form</h1>
       <input
         type="text"
         placeholder="Enter Name"
@@ -293,7 +317,27 @@ function App() {
         placeholder="Enter Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
+      /> */}
+
+      {/*Task 10*/}
+
+      <input
+        type="text"
+        placeholder="Employee Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
       />
+
+      <input
+        type="number"
+        placeholder="Leave Days"
+        value={days}
+        onChange={(e) => setDays(e.target.value)}
+      />
+
+      <h2>Status: {status}</h2>
+
+      <button onClick={handleSubmit}>Submit</button>
     </>
   );
 }
