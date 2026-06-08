@@ -118,19 +118,43 @@ function App() {
   {
     /*Task 8 */
   }
-  const products = [
-    { id: 1, name: "Laptop", price: 1000 },
-    { id: 2, name: "Phone", price: 500 },
-    { id: 3, name: "Headphones", price: 100 },
-  ];
+  // const products = [
+  //   { id: 1, name: "Laptop", price: 1000 },
+  //   { id: 2, name: "Phone", price: 500 },
+  //   { id: 3, name: "Headphones", price: 100 },
+  // ];
 
-  const [cart, setCart] = useState([]);
+  // const [cart, setCart] = useState([]);
 
-  const addToCart = (product) => {
-    setCart([...cart, product]);
-  };
+  // const addToCart = (product) => {
+  //   setCart([...cart, product]);
+  // };
 
-  const total = cart.reduce((sum, item) => sum + item.price, 0);
+  // const total = cart.reduce((sum, item) => sum + item.price, 0);
+
+  {
+    /*Task 9*/
+  }
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    localStorage.setItem("name", name);
+    localStorage.setItem("email", email);
+  }, [name, email]);
+
+  useEffect(() => {
+    const savedName = localStorage.getItem("name");
+    const savedEmail = localStorage.getItem("email");
+
+    if (savedName) {
+      setName(savedName);
+    }
+
+    if (savedEmail) {
+      setEmail(savedEmail);
+    }
+  }, []);
 
   return (
     <>
@@ -243,7 +267,7 @@ function App() {
       </div> */}
 
       {/*Task 8 */}
-      {products.map((product) => (
+      {/* {products.map((product) => (
         <div key={product.id}>
           <h3>{product.name}</h3>
           <p>Rs.{product.price}/=</p>
@@ -253,7 +277,23 @@ function App() {
       ))}
 
       <h2>Cart Items: {cart.length}</h2>
-      <h2>Total: Rs.{total}/=</h2>
+      <h2>Total: RS.{total}</h2> */}
+
+      {/*Task 9*/}
+      <h1>Auto Save Form</h1>
+      <input
+        type="text"
+        placeholder="Enter Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+
+      <input
+        type="email"
+        placeholder="Enter Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
     </>
   );
 }
