@@ -159,26 +159,42 @@ function App() {
   {
     /*Task 10*/
   }
-  const [name, setName] = useState("");
-  const [days, setDays] = useState("");
-  const [status, setStatus] = useState("");
+  // const [name, setName] = useState("");
+  // const [days, setDays] = useState("");
+  // const [status, setStatus] = useState("");
+
+  // useEffect(() => {
+  //   if (days === "" || days === null) {
+  //     setStatus("");
+  //     return;
+  //   }
+
+  //   if (Number(days) > 10) {
+  //     setStatus("Manager Approval Required");
+  //   } else {
+  //     setStatus("Approved");
+  //   }
+  // }, [days]);
+
+  // const handleSubmit = () => {
+  //   alert(`${name} applied for ${days} days - ${status}`);
+  // };
+
+  {
+    /*Task 10*/
+  }
+
+  const [time, setTime] = useState(60);
 
   useEffect(() => {
-    if (days === "" || days === null) {
-      setStatus("");
-      return;
-    }
+    if (time === 0) return;
 
-    if (Number(days) > 10) {
-      setStatus("Manager Approval Required");
-    } else {
-      setStatus("Approved");
-    }
-  }, [days]);
+    const timer = setTimeout(() => {
+      setTime(time - 1);
+    }, 1000);
 
-  const handleSubmit = () => {
-    alert(`${name} applied for ${days} days - ${status}`);
-  };
+    return () => clearTimeout(timer);
+  }, [time]);
 
   return (
     <>
@@ -321,7 +337,7 @@ function App() {
 
       {/*Task 10*/}
 
-      <input
+      {/* <input
         type="text"
         placeholder="Employee Name"
         value={name}
@@ -337,7 +353,13 @@ function App() {
 
       <h2>Status: {status}</h2>
 
-      <button onClick={handleSubmit}>Submit</button>
+      <button onClick={handleSubmit}>Submit</button> */}
+
+      {/* Task 11 */}
+      <h1>Online Exam Timer</h1>
+
+      <h2>Countdown Start: {time}</h2>
+      {time === 0 && <h2>Exam Ended</h2>}
     </>
   );
 }
