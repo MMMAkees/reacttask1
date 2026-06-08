@@ -105,15 +105,32 @@ function App() {
   {
     /*Task 7 */
   }
-  const [darkMode, setDarkMode] = useState(false);
+  // const [darkMode, setDarkMode] = useState(false);
 
-  useEffect(() => {
-    if (darkMode) {
-      document.title = "Dark Mode Enabled";
-    } else {
-      document.title = "Light Mode Enabled";
-    }
-  }, [darkMode]);
+  // useEffect(() => {
+  //   if (darkMode) {
+  //     document.title = "Dark Mode Enabled";
+  //   } else {
+  //     document.title = "Light Mode Enabled";
+  //   }
+  // }, [darkMode]);
+
+  {
+    /*Task 8 */
+  }
+  const products = [
+    { id: 1, name: "Laptop", price: 1000 },
+    { id: 2, name: "Phone", price: 500 },
+    { id: 3, name: "Headphones", price: 100 },
+  ];
+
+  const [cart, setCart] = useState([]);
+
+  const addToCart = (product) => {
+    setCart([...cart, product]);
+  };
+
+  const total = cart.reduce((sum, item) => sum + item.price, 0);
 
   return (
     <>
@@ -212,7 +229,7 @@ function App() {
         ))} */}
 
       {/*Task 7*/}
-      <div
+      {/* <div
         style={{
           backgroundColor: darkMode ? "black" : "white",
           color: darkMode ? "white" : "black",
@@ -222,8 +239,21 @@ function App() {
       >
         <h1>{darkMode ? "Dark Mode" : "Light Mode"}</h1>
 
-        <button onClick={() => setDarkMode(!darkMode)}>Toggle Mode</button>
-      </div>
+        <button onClick={() => setDarkMode(!darkMode)}>Theme</button>
+      </div> */}
+
+      {/*Task 8 */}
+      {products.map((product) => (
+        <div key={product.id}>
+          <h3>{product.name}</h3>
+          <p>Rs.{product.price}/=</p>
+
+          <button onClick={() => addToCart(product)}>Add to Cart</button>
+        </div>
+      ))}
+
+      <h2>Cart Items: {cart.length}</h2>
+      <h2>Total: Rs.{total}/=</h2>
     </>
   );
 }
