@@ -105,17 +105,16 @@ function App() {
   {
     /*Task 7 */
   }
-  const [student, setStudent] = useState("");
-  const [students, setStudents] = useState([]);
+  const [darkMode, setDarkMode] = useState(false);
 
-  const addStudent = () => {
-    if (student.trim() === "") {
-      return;
+  useEffect(() => {
+    if (darkMode) {
+      document.title = "Dark Mode Enabled";
+    } else {
+      document.title = "Light Mode Enabled";
     }
+  }, [darkMode]);
 
-    setStudents([...students, student]);
-    setStudent("");
-  };
   return (
     <>
       {/*Task 1*/}
@@ -213,21 +212,18 @@ function App() {
         ))} */}
 
       {/*Task 7*/}
-      <h1>Student Manager</h1>
+      <div
+        style={{
+          backgroundColor: darkMode ? "black" : "white",
+          color: darkMode ? "white" : "black",
+          minHeight: "100vh",
+          padding: "20px",
+        }}
+      >
+        <h1>{darkMode ? "Dark Mode" : "Light Mode"}</h1>
 
-      <input
-        type="text"
-        placeholder="Enter student name"
-        value={student}
-        onChange={(e) => setStudent(e.target.value)}
-      />
-
-      <button onClick={addStudent}>Add Student</button>
-
-      <h2>Students</h2>
-      {students.map((item, index) => (
-        <p key={index}>{item}</p>
-      ))}
+        <button onClick={() => setDarkMode(!darkMode)}>Toggle Mode</button>
+      </div>
     </>
   );
 }
