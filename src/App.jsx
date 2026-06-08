@@ -184,17 +184,44 @@ function App() {
     /*Task 10*/
   }
 
-  const [time, setTime] = useState(60);
+  // const [time, setTime] = useState(60);
+
+  // useEffect(() => {
+  //   if (time === 0) return;
+
+  //   const timer = setTimeout(() => {
+  //     setTime(time - 1);
+  //   }, 1000);
+
+  //   return () => clearTimeout(timer);
+  // }, [time]);
+
+  {
+    /*Task 11*/
+  }
+  const [products] = useState([
+    { id: 1, name: "Laptop", stock: 10 },
+    { id: 2, name: "Phone", stock: 0 },
+    { id: 3, name: "Keyboard", stock: 5 },
+    { id: 4, name: "Mouse", stock: 0 },
+  ]);
+
+  const [totalProducts, setTotalProducts] = useState(0);
+  const [inStock, setInStock] = useState(0);
+  const [outOfStock, setOutOfStock] = useState(0);
 
   useEffect(() => {
-    if (time === 0) return;
+    setTotalProducts(products.length);
 
-    const timer = setTimeout(() => {
-      setTime(time - 1);
-    }, 1000);
+    const inStockCount = products.filter((product) => product.stock > 0).length;
 
-    return () => clearTimeout(timer);
-  }, [time]);
+    const outOfStockCount = products.filter(
+      (product) => product.stock === 0,
+    ).length;
+
+    setInStock(inStockCount);
+    setOutOfStock(outOfStockCount);
+  }, [products]);
 
   return (
     <>
@@ -356,10 +383,17 @@ function App() {
       <button onClick={handleSubmit}>Submit</button> */}
 
       {/* Task 11 */}
-      <h1>Online Exam Timer</h1>
+      {/* <h1>Online Exam Timer</h1>
 
       <h2>Countdown Start: {time}</h2>
-      {time === 0 && <h2>Exam Ended</h2>}
+      {time === 0 && <h2>Exam Ended</h2>} */}
+
+      {/* Task 12 */}
+      <h1>Inventory Dashboard</h1>
+
+      <h2>Total Products: {totalProducts}</h2>
+      <h2>In Stock: {inStock}</h2>
+      <h2>Out Of Stock: {outOfStock}</h2>
     </>
   );
 }
