@@ -98,10 +98,24 @@ function App() {
   {
     /*Task 6 */
   }
-  const students = ["Akees", "Ali", "Samthi", "Haseem", "Zain"];
+  // const students = ["Akees", "Ali", "Samthi", "Haseem", "Zain"];
 
-  const [search, setSearch] = useState("");
+  // const [search, setSearch] = useState("");
 
+  {
+    /*Task 7 */
+  }
+  const [student, setStudent] = useState("");
+  const [students, setStudents] = useState([]);
+
+  const addStudent = () => {
+    if (student.trim() === "") {
+      return;
+    }
+
+    setStudents([...students, student]);
+    setStudent("");
+  };
   return (
     <>
       {/*Task 1*/}
@@ -181,7 +195,7 @@ function App() {
       </ul> */}
 
       {/*Task 6 */}
-      <h1>Student Search</h1>
+      {/* <h1>Student Search</h1>
 
       <input
         type="text"
@@ -196,7 +210,24 @@ function App() {
         )
         .map((student, index) => (
           <p key={index}>{student}</p>
-        ))}
+        ))} */}
+
+      {/*Task 7*/}
+      <h1>Student Manager</h1>
+
+      <input
+        type="text"
+        placeholder="Enter student name"
+        value={student}
+        onChange={(e) => setStudent(e.target.value)}
+      />
+
+      <button onClick={addStudent}>Add Student</button>
+
+      <h2>Students</h2>
+      {students.map((item, index) => (
+        <p key={index}>{item}</p>
+      ))}
     </>
   );
 }
